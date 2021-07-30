@@ -1,7 +1,8 @@
 
 d3.select("#calculate").on("click", function(){
-    var height = d3.select("#height").value;
-    var angle = d3.select("#angle").value;
+    var height = d3.select("#height").node().value
+    console.log(height)
+    var angle = d3.select("#angle").node().value;
     // Assign the value of the dropdown menu option to a variable
 
     var url = `./calculate?height=${height}&angle=${angle}`

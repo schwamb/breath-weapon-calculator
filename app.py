@@ -1,8 +1,6 @@
-from flask import Flask, request, render_template, jsonify, Response
-from flask_cors import CORS
-from joblib import load
-import pandas as pd
-from sqlalchemy import create_engine, func
+from flask import Flask, render_template, redirect, url_for,request
+from flask import make_response
+app = Flask(__name__)
 
 import math
 import matplotlib.pyplot as plt 
@@ -13,7 +11,6 @@ import dash_core_components as dcc
 import dash_html_components as html
 
 app = Flask(__name__)
-CORS(app)
 
 
 @app.route('/')
@@ -21,14 +18,7 @@ def home():
     return render_template('index.html')
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/calculate')
+@app.route('/calculate', methods=['GET','POST'])
 def calculate():
     height = int(input("Enter character's height in inches: "))
     # attack = input("Enter the ranged attack type (breath weapon, short bow, long bow): ")
